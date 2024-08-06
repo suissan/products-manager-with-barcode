@@ -13,10 +13,10 @@
 
 ## アプリケーションリンク
 使いやすいですよ！  
-[ベースフード管理マネージャー](https://basefood-manager-ultimate.onrender.com/)
+[ベースフード管理マネージャー](https://products-manager-with-barcode.onrender.com/)
 
 ## アプリケーションの使い方
-アプリホームの右上に [使い方](https://basefood-manager-ultimate.onrender.com/usage) を記載
+アプリホームの右上に [使い方](https://products-manager-with-barcode.onrender.com/usage) を記載
 
 ## 作成した経緯
 ふと思いついてしまった・・・  
