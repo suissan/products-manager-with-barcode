@@ -1,0 +1,176 @@
+body {
+  font-family: "RocknRoll One", sans-serif;
+  width: 960px;
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+  color: #c7c7c7;
+  background-color: rgba(40, 39, 44, 1);
+}
+
+.title {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.usage {
+  position: absolute;
+  right: 10%;
+  top: 1px;
+}
+
+.get-my-product {
+  margin: 5px 20px;
+}
+
+.get-my-product p {
+  line-height: 0.5;
+  color: #d2ad32;
+}
+
+.manage-form,
+.register-form {
+  position: relative;
+}
+
+.btn {
+  margin-left: 10px;
+  font-size: 15px;
+  position: relative;
+  padding: 5px 12px;
+  color: #fff;
+  font-family: "RocknRoll One", sans-serif;
+  overflow: hidden;
+}
+
+.get-info {
+  border: solid 2px #006ece;
+  background-color: rgb(16, 144, 179);
+}
+
+.manage-stock {
+  border: solid 2px #ca6d0f;
+  background-color: #fea426;
+}
+
+.register-code {
+  border: solid 2px #059422;
+  background-color: #21d492;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 500%;
+  width: 150%;
+}
+
+.get-info::before {
+  background-color: #33daed;
+  transform: translateX(-75%) rotate(45deg);
+}
+
+.manage-stock::before {
+  background-color: #ed472e;
+  transform: translateX(40%) rotate(-45deg);
+}
+
+.register-code::before {
+  background-color: #00a23b;
+  transform: translateX(-95%);
+  opacity: 0.4;
+}
+
+.container {
+  position: absolute;
+  right: 20px;
+  bottom: 2px;
+  width: 40%;
+}
+
+.container input {
+  padding: 7px;
+}
+
+.container p {
+  line-height: 0.5;
+  margin-bottom: 0;
+}
+
+.camera-canvas {
+  position: relative;
+}
+
+.camera-canvas video,
+.camera-canvas canvas {
+  width: 300px;
+  right: 10%;
+  top: 20px;
+  position: absolute;
+  border: solid 5px;
+  border-image: linear-gradient(to right, #57c3c1, #4ac55d) 1;
+}
+
+.contents {
+  margin: 30px 30px;
+}
+
+.contents li {
+  font-size: 25px;
+}
+
+.mode-select {
+  position: relative;
+}
+
+.mode {
+  position: absolute;
+  bottom: 70px;
+  right: 20%;
+}
+
+.mode label:first-of-type {
+  margin-right: 10px;
+}
+
+.instruction-container {
+  margin: auto;
+  width: 750px;
+}
+
+.home {
+  color: inherit;
+  text-decoration: none;
+}
+
+.check {
+  color: inherit;
+}
+
+.how-to-use {
+  margin: 20px 0;
+}
+
+.line {
+  line-height: 2.5;
+  margin-bottom: 50px;
+}
+
+.caution {
+  font-size: 12px;
+  color: red;
+}
+
+.preparation {
+  color: #f1cc38;
+}
+
+.done {
+  color: #0ab462;
+}
+
+.example {
+  color: #04e69b;
+}

@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  p.usage 使い方は #[a(href="/usage").check こちら]
+  div.get-my-product
+    form(action="/products/add-stocks", method="get") 
+      button(type="submit").btn.get-info >> 取得！ <<
+      p ※「取得」は月に一度、商品が届きたときに押して下さい。
+      p &nbsp; &nbsp; 公式マイページから当月買った個数を取得します。
+  div.mode-select
+    div.mode
+      label
+        input(type="radio" name="mode")#manage
+        | 在庫管理
+      label
+        input(type="radio" name="mode")#register
+        | コード登録 
+  div#manageForm.manage-form
+    div.container
+      form(action="/products/update-stock" method="POST")
+        input(type="text" name="verifyCode")#verifyCodeInput
+        button(type="submit").btn.manage-stock いただきます！
+      p 選択した商品: #[span#productName]
+  div#registerForm.register-form
+    div.container
+      form(action="/products/register-code" method="POST")
+        input(type="text" name="registeredInfo")#registerCodeInput
+        button(type="submit").btn.register-code 登録する！
+      p 「コード 商品名」のように入力
+  div#cameraCanvas.camera-canvas
+  div.contents
+    ul 
+      if (products)
+        each product in products 
+          li.productDisplay #{product.name}: 残り #{product.stock}
+            input(type="hidden" value=product.code).productCode
+  script(src="javascripts/bundle.js")
