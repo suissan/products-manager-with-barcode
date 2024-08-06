@@ -16,6 +16,10 @@ exports.getBaseInfo = getBaseInfo;
 const puppeteer_1 = __importDefault(require("puppeteer"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
+const LOGIN_URL = process.env.LOGIN_URL;
+const REGISTER_MAIL_ADDRESS = process.env.REGISTER_MAIL_ADDRESS;
+const REGISTER_PASSWORD = process.env.REGISTER_PASSWORD;
+const TARGET_URL = process.env.TARGET_URL;
 function getBaseInfo() {
     return __awaiter(this, void 0, void 0, function* () {
         const browser = yield puppeteer_1.default.launch({
@@ -30,12 +34,12 @@ function getBaseInfo() {
         try {
             const page = yield browser.newPage();
             yield page.setDefaultNavigationTimeout(0); // タイムアウトを阻止
-            yield page.goto("https://shop.basefood.co.jp/account/login");
-            yield page.type("#CustomerEmail", "suiMox7.sg@gmail.com");
-            yield page.type("#CustomerPassword", "u6e67u958b");
+            yield page.goto(LOGIN_URL);
+            yield page.type("#CustomerEmail", REGISTER_MAIL_ADDRESS);
+            yield page.type("#CustomerPassword", REGISTER_PASSWORD);
             yield page.click('button[form="login"]');
             yield page.waitForNavigation();
-            yield page.goto("https://shop.basefood.co.jp/mypage/subscription");
+            yield page.goto(TARGET_URL);
             yield page.waitForSelector('.mypage__products');
             console.log("対象ページの取得が完了");
             const createProductsInfo = yield page.evaluate(() => {

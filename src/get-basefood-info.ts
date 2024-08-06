@@ -8,6 +8,11 @@ interface BaseInfo {
     stock: string;
 }
 
+const LOGIN_URL = process.env.LOGIN_URL as string;
+const REGISTER_MAIL_ADDRESS = process.env.REGISTER_MAIL_ADDRESS as string;
+const REGISTER_PASSWORD = process.env.REGISTER_PASSWORD as string;
+const TARGET_URL = process.env.TARGET_URL as string;
+
 async function getBaseInfo(): Promise<BaseInfo[]> {
     const browser = await puppeteer.launch({
         args: [
@@ -22,12 +27,12 @@ async function getBaseInfo(): Promise<BaseInfo[]> {
     try {
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(0); // タイムアウトを阻止
-        await page.goto("https://shop.basefood.co.jp/account/login");
-        await page.type("#CustomerEmail", "suiMox7.sg@gmail.com");
-        await page.type("#CustomerPassword", "u6e67u958b");
+        await page.goto(LOGIN_URL);
+        await page.type("#CustomerEmail", REGISTER_MAIL_ADDRESS);
+        await page.type("#CustomerPassword", REGISTER_PASSWORD);
         await page.click('button[form="login"]');
         await page.waitForNavigation();
-        await page.goto("https://shop.basefood.co.jp/mypage/subscription");
+        await page.goto(TARGET_URL);
         await page.waitForSelector('.mypage__products');
 
         console.log("対象ページの取得が完了");

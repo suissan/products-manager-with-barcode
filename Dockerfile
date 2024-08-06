@@ -8,4 +8,4 @@ WORKDIR /user/src/app
 COPY package*.json ./
 RUN yarn install --frozen-lockfile
 COPY . .
-CMD ["node", "./bin/www"]
+CMD ["node", "./dist/bin/www.js"]

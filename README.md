@@ -2,11 +2,13 @@
 
 ## 使用技術
 <p style="display: inline">
-  <img src="https://img.shields.io/badge/-Node.js-339933.svg?logo=node.js&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-Javascript-F7DF1E.svg?logo=javascript&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-Postgresql-336791.svg?logo=postgresql&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-Yarn-2C8EBB.svg?logo=yarn&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Node.js-black.svg?logo=node.js&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Typescript-57ace5.svg?logo=typescript&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Javascript-yellow.svg?logo=javascript&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Webpack-6c8ad7.svg?logo=webpack&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Docker-d0dae0.svg?logo=docker&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Postgresql-beb293.svg?logo=postgresql&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Yarn-white.svg?logo=yarn&style=for-the-badge">
 </p>
 
 ## アプリケーションリンク
