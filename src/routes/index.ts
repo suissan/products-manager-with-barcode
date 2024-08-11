@@ -6,7 +6,11 @@ const router = express.Router();
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const results = await Stock.findAll({ order: [["id", "ASC"]] });
-    res.render("index", { products: results });
+    const total = await Stock.sum("stock");
+    res.render("index", {
+      products: results,
+      sum: total
+    });
 
   } catch (error) {
     res.status(500).send("エラーが発生しました");

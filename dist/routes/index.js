@@ -21,7 +21,11 @@ exports.router = router;
 router.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const results = yield stock_1.stock.findAll({ order: [["id", "ASC"]] });
-        res.render("index", { products: results });
+        const total = yield stock_1.stock.sum("stock");
+        res.render("index", {
+            products: results,
+            sum: total
+        });
     }
     catch (error) {
         res.status(500).send("エラーが発生しました");

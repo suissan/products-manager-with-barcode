@@ -23,6 +23,10 @@ body {
   margin: 5px 20px;
 }
 
+.sum h2 {
+  margin: 10px 30px;
+}
+
 .get-my-product p {
   line-height: 0.5;
   color: #d2ad32;
@@ -114,7 +118,7 @@ body {
 }
 
 .contents {
-  margin: 30px 30px;
+  margin: 10px 30px 10px 30px;
 }
 
 .contents li {
