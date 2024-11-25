@@ -40,7 +40,7 @@ function getBaseInfo() {
             yield page.click('button[form="login"]');
             yield page.waitForNavigation();
             yield page.goto(TARGET_URL);
-            yield page.waitForSelector('.mypage__products');
+            yield page.waitForSelector('.NextDelivery_subscriptionProducts__aEkj8');
             console.log("対象ページの取得が完了");
             const createProductsInfo = yield page.evaluate(() => {
                 const productsList = [];
