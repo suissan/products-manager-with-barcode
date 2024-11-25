@@ -39,14 +39,19 @@ async function getBaseInfo(): Promise<BaseInfo[]> {
 
         const createProductsInfo = await page.evaluate(() => {
             const productsList: BaseInfo[] = [];
-            const productElements: HTMLElement[] = Array.from(document.querySelectorAll('.mypage__products')); // 商品一覧
-            const selectElements: HTMLSelectElement[] = Array.from(document.querySelectorAll('select')); // <select>要素を取得
-            selectElements.forEach((ele: any, index: number) => {
-                if (index <= 1) {
-                    return;
+            const productElements: HTMLElement[] | null = Array.from(document.querySelectorAll('.NextDelivery_subscriptionProducts__aEkj8')); // 商品一覧
+            const selectElements: HTMLSelectElement[] | null = Array.from(document.querySelectorAll('select')); // <select>要素を取得
+
+            const loopLength = productElements[0].children.length + 2; // 2はセレクトタグ取得で購入数のプルダウンが始まる位置
+            for (let i = 0; i < loopLength; i++) {
+                if (i <= 1) {
+                    continue;
                 }
-                const productName: string = productElements[index - 2].children[1].innerHTML.trim().split("\n")[0]; // 商品の名前
-                const productStock: string = ele.options[ele.selectedIndex].innerText.match(/\d+/)[0]; // 買った個数
+                
+                const productElement = productElements[0].children[i - 2].querySelector("span");
+                const productName: string = productElement ? productElement.innerHTML.trim().split("\n")[0] : "不明"; // 商品の名前;
+                const matchResult = selectElements[i].options[selectElements[i].selectedIndex].innerText.match(/\d+/); // 買った個数
+                const productStock: string = matchResult? matchResult[0] : "0"; // 在庫数
                 if (productStock !== "0") {
                     const productInfo: BaseInfo = {
                         name: productName,
@@ -54,7 +59,7 @@ async function getBaseInfo(): Promise<BaseInfo[]> {
                     };
                     productsList.push(productInfo);
                 }
-            });
+            }
             return productsList;
         });
         await browser.close();

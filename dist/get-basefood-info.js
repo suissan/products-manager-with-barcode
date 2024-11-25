@@ -44,14 +44,17 @@ function getBaseInfo() {
             console.log("対象ページの取得が完了");
             const createProductsInfo = yield page.evaluate(() => {
                 const productsList = [];
-                const productElements = Array.from(document.querySelectorAll('.mypage__products')); // 商品一覧
+                const productElements = Array.from(document.querySelectorAll('.NextDelivery_subscriptionProducts__aEkj8')); // 商品一覧
                 const selectElements = Array.from(document.querySelectorAll('select')); // <select>要素を取得
-                selectElements.forEach((ele, index) => {
-                    if (index <= 1) {
-                        return;
+                const loopLength = productElements[0].children.length + 2; // 2はセレクトタグ取得で購入数のプルダウンが始まる位置
+                for (let i = 0; i < loopLength; i++) {
+                    if (i <= 1) {
+                        continue;
                     }
-                    const productName = productElements[index - 2].children[1].innerHTML.trim().split("\n")[0]; // 商品の名前
-                    const productStock = ele.options[ele.selectedIndex].innerText.match(/\d+/)[0]; // 買った個数
+                    const productElement = productElements[0].children[i - 2].querySelector("span");
+                    const productName = productElement ? productElement.innerHTML.trim().split("\n")[0] : "不明"; // 商品の名前;
+                    const matchResult = selectElements[i].options[selectElements[i].selectedIndex].innerText.match(/\d+/); // 買った個数
+                    const productStock = matchResult ? matchResult[0] : "0"; // 在庫数
                     if (productStock !== "0") {
                         const productInfo = {
                             name: productName,
@@ -59,7 +62,7 @@ function getBaseInfo() {
                         };
                         productsList.push(productInfo);
                     }
-                });
+                }
                 return productsList;
             });
             yield browser.close();
