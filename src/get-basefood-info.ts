@@ -33,7 +33,7 @@ async function getBaseInfo(): Promise<BaseInfo[]> {
         await page.click('button[form="login"]');
         await page.waitForNavigation();
         await page.goto(TARGET_URL);
-        await page.waitForSelector('.mypage__products');
+        await page.waitForSelector('.NextDelivery_subscriptionProducts__aEkj8');
 
         console.log("対象ページの取得が完了");
 
