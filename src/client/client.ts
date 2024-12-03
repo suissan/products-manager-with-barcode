@@ -42,7 +42,7 @@ window.Quagga.init({
         type: "LiveStream",
         target: document.querySelector('#cameraCanvas'),
         constraints: {
-            facingMode: "environment"
+            facingMode: "user"
         },
     },
     decoder: {
