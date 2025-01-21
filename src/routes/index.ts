@@ -6,9 +6,10 @@ const router = express.Router();
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const results = await Stock.findAll({ order: [["id", "ASC"]] });
+    const availableStock = results.filter((product) => product.getDataValue("stock") > 0);
     const total = await Stock.sum("stock");
     res.render("index", {
-      products: results,
+      products: availableStock,
       sum: total
     });
 
