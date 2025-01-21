@@ -21,10 +21,9 @@ exports.router = router;
 router.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const results = yield stock_1.stock.findAll({ order: [["id", "ASC"]] });
-        const availableStock = results.filter((product) => product.getDataValue("stock") > 0);
         const total = yield stock_1.stock.sum("stock");
         res.render("index", {
-            products: availableStock,
+            products: results,
             sum: total
         });
     }
