@@ -7,7 +7,7 @@ import { sqlZ } from "../models/sequelize-loader";
 const router = express.Router();
 
 /* 個数を取得し表示する */
-router.get('/add-stocks', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/add-stocks', async (req: Request, res: Response, next: NextFunction) => {
     const { products } = req.body;
 
     if (!Array.isArray(products)) {

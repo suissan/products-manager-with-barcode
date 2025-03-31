@@ -19,7 +19,7 @@ const sequelize_loader_1 = require("../models/sequelize-loader");
 const router = express_1.default.Router();
 exports.router = router;
 /* 個数を取得し表示する */
-router.get('/add-stocks', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/add-stocks', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { products } = req.body;
     if (!Array.isArray(products)) {
