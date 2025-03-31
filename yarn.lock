@@ -2589,6 +2589,11 @@ puppeteer@^22.15.0:
     devtools-protocol "0.0.1312386"
     puppeteer-core "22.15.0"
 
+pushover-notifications@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/pushover-notifications/-/pushover-notifications-1.2.3.tgz#89586e35355203d09db288ada0aa5eddb6d2972b"
+  integrity sha512-jVfniktfi8nYS5f1QsHs/fFAkzSaHYUcmn4CFOMMsv2wvvxvMgSJdjkdoRR0BqQU6uYs2QJs41PQhbqa1TkAIg==
+
 qs@6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
