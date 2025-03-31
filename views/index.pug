@@ -2,9 +2,6 @@ extends layout
 
 block content
   p.usage 使い方は #[a(href="/usage").check こちら]
-  div.get-my-product
-    form(action="/products/add-stocks", method="get") 
-      button(type="submit").btn.get-info >> 取得！ <<
   div.sum
     h2 合計: #{sum} 個
   div.mode-select
