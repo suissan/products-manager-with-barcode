@@ -63,7 +63,7 @@ router.post('/add-stocks', async (req: Request, res: Response, next: NextFunctio
 router.post('/update-stock', async (req: Request, res: Response, next: NextFunction) => {
     try {
 
-        // anyとなっている部分は妥協点。直す
+        // anyとなっている部分は妥協点。直す。
         const product: any = await Stock.findOne({ where: { code: req.body.verifyCode } });
 
         if (!product) {
