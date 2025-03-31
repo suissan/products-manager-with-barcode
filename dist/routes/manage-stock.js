@@ -71,3 +71,23 @@ router.post('/register-code', (req, res, next) => __awaiter(void 0, void 0, void
         console.log(`エラー: ${error}`);
     }
 }));
+router.post('/api/update-stock', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { products } = req.body;
+        if (!Array.isArray(products)) {
+            return res.status(400).json({ error: 'Invalid format' });
+        }
+        for (const product of products) {
+            yield stock_1.stock.create({
+                name: product.name,
+                stock: parseInt(product.stock, 10),
+                code: product.code,
+            });
+        }
+        res.status(200).send('保存完了');
+    }
+    catch (err) {
+        console.error('保存時エラー:', err);
+        res.status(500).send('サーバーエラー');
+    }
+}));

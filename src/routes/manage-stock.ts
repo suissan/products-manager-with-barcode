@@ -92,6 +92,7 @@ router.post('/api/update-stock', async (req: Request, res: Response, next: NextF
         console.error('保存時エラー:', err);
         res.status(500).send('サーバーエラー');
       }
+      
 });
 
 export { router }
