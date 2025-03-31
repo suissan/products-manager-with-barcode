@@ -71,4 +71,27 @@ router.post('/register-code', async (req: Request, res: Response, next: NextFunc
     }
 });
 
+router.post('/api/update-stock', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { products } = req.body;
+    
+        if (!Array.isArray(products)) {
+          return res.status(400).json({ error: 'Invalid format' });
+        }
+    
+        for (const product of products) {
+          await Stock.create({
+            name: product.name,
+            stock: parseInt(product.stock, 10),
+            code: product.code,
+          });
+        }
+    
+        res.status(200).send('保存完了');
+      } catch (err) {
+        console.error('保存時エラー:', err);
+        res.status(500).send('サーバーエラー');
+      }
+});
+
 export { router }
