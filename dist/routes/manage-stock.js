@@ -27,11 +27,19 @@ router.post('/add-stocks', (req, res, next) => __awaiter(void 0, void 0, void 0,
     }
     try {
         for (const product of products) {
-            yield stock_1.stock.upsert({
-                name: product.name,
-                stock: parseInt(product.stock, 10),
-                code: (_a = product.code) !== null && _a !== void 0 ? _a : null,
-            });
+            const existing = yield stock_1.stock.findOne({ where: { name: product.name } });
+            if (existing) {
+                // すでに存在していたら、在庫だけ更新
+                yield stock_1.stock.update({ stock: parseInt(product.stock, 10) }, { where: { name: product.name } });
+            }
+            else {
+                // 存在しない場合は新規作成
+                yield stock_1.stock.create({
+                    name: product.name,
+                    stock: parseInt(product.stock, 10),
+                    code: (_a = product.code) !== null && _a !== void 0 ? _a : null,
+                });
+            }
         }
         res.status(200).send('保存完了');
     }

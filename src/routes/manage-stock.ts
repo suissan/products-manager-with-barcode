@@ -8,6 +8,7 @@ const router = express.Router();
 
 /* 個数を取得し表示する */
 router.post('/add-stocks', async (req: Request, res: Response, next: NextFunction) => {
+
     const { products } = req.body;
 
     if (!Array.isArray(products)) {
@@ -16,12 +17,24 @@ router.post('/add-stocks', async (req: Request, res: Response, next: NextFunctio
 
     try {
         for (const product of products) {
-            await Stock.upsert({
-                name: product.name,
-                stock: parseInt(product.stock, 10),
-                code: product.code ?? null,
-            });
+            const existing = await Stock.findOne({ where: { name: product.name } });
+
+            if (existing) {
+                // すでに存在していたら、在庫だけ更新
+                await Stock.update(
+                    { stock: parseInt(product.stock, 10) },
+                    { where: { name: product.name } }
+                );
+            } else {
+                // 存在しない場合は新規作成
+                await Stock.create({
+                    name: product.name,
+                    stock: parseInt(product.stock, 10),
+                    code: product.code ?? null,
+                });
+            }
         }
+
         res.status(200).send('保存完了');
     } catch (err) {
         console.error('保存エラー:', err);
