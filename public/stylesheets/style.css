@@ -110,6 +110,7 @@ body {
 
 .mode-select {
   position: relative;
+  margin-top: 50px;
 }
 
 .mode {
