@@ -19,17 +19,8 @@ body {
   top: 1px;
 }
 
-.get-my-product {
-  margin: 5px 20px;
-}
-
 .sum h2 {
   margin: 10px 30px;
-}
-
-.get-my-product p {
-  line-height: 0.5;
-  color: #d2ad32;
 }
 
 .manage-form,
@@ -45,11 +36,6 @@ body {
   color: #fff;
   font-family: "RocknRoll One", sans-serif;
   overflow: hidden;
-}
-
-.get-info {
-  border: solid 2px #006ece;
-  background-color: rgb(16, 144, 179);
 }
 
 .manage-stock {
@@ -69,11 +55,6 @@ body {
   left: 0;
   height: 500%;
   width: 150%;
-}
-
-.get-info::before {
-  background-color: #33daed;
-  transform: translateX(-75%) rotate(45deg);
 }
 
 .manage-stock::before {
@@ -118,6 +99,8 @@ body {
 }
 
 .contents {
+  position: relative;
+  bottom: 40px;
   margin: 10px 30px 10px 30px;
 }
 
