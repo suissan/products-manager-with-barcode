@@ -8,28 +8,26 @@ const router = express.Router();
 
 /* 個数を取得し表示する */
 router.get('/add-stocks', async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const products: BaseInfo[] = await getBaseInfo();
+    const { products } = req.body;
 
-        for (const product of products) {
-            const results: object | null = await Stock.findOne({ where: { name: product.name } });
-
-            if (!results) {
-                await Stock.create({ name: product.name, stock: product.stock });
-
-            } else {
-                await Stock.update({ stock: product.stock }, { where: { name: product.name } });
-            }
-        }
-
-        res.redirect("/");
-
-    } catch (error) {
-
-        // エラーハンドリング
-        res.status(500).send("エラーが発生しました");
-        console.log(`エラー: ${error}`);
+    if (!Array.isArray(products)) {
+        return res.status(400).json({ error: 'Invalid format' });
     }
+
+    try {
+        for (const product of products) {
+            await Stock.upsert({
+                name: product.name,
+                stock: parseInt(product.stock, 10),
+                code: product.code ?? null,
+            });
+        }
+        res.status(200).send('保存完了');
+    } catch (err) {
+        console.error('保存エラー:', err);
+        res.status(500).send('サーバーエラー');
+    }
+
 });
 
 /* 在庫管理（在庫を1つ減らす） */
@@ -74,25 +72,25 @@ router.post('/register-code', async (req: Request, res: Response, next: NextFunc
 router.post('/api/update-stock', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { products } = req.body;
-    
+
         if (!Array.isArray(products)) {
-          return res.status(400).json({ error: 'Invalid format' });
+            return res.status(400).json({ error: 'Invalid format' });
         }
-    
+
         for (const product of products) {
-          await Stock.create({
-            name: product.name,
-            stock: parseInt(product.stock, 10),
-            code: product.code,
-          });
+            await Stock.create({
+                name: product.name,
+                stock: parseInt(product.stock, 10),
+                code: product.code,
+            });
         }
-    
+
         res.status(200).send('保存完了');
-      } catch (err) {
+    } catch (err) {
         console.error('保存時エラー:', err);
         res.status(500).send('サーバーエラー');
-      }
-      
+    }
+
 });
 
 export { router }
