@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import { stock as Stock } from "../models/stock";
+import { Stock } from "../models/stock";
 const router = express.Router();
 
 /* ホームページ */

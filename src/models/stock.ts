@@ -1,37 +1,57 @@
-import { database, Sequelize } from "./sequelize-loader";
-
-const stock = database.define(
-    'products_stocks',
+// models/Stock.ts
+import {
+    Model,
+    DataTypes,
+    CreationOptional,
+    InferAttributes,
+    InferCreationAttributes,
+  } from 'sequelize';
+  import { database } from './sequelize-loader';
+  
+  class Stock extends Model<
+    InferAttributes<Stock>,
+    InferCreationAttributes<Stock>
+  > {
+    declare id: CreationOptional<number>;
+    declare name: string;
+    declare stock: number;
+    declare code: string | null;
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
+  }
+  
+  Stock.init(
     {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            allowNull: false
-        },
-        name: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-        stock: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
-        code: {
-            type: Sequelize.STRING,
-            allowNull: true
-        },
-        createdAt: {
-            type: Sequelize.DATE,
-            allowNull: false
-        },
-        updatedAt: {
-            type: Sequelize.DATE,
-            allowNull: false
-        }
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      code: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+      },
     },
-);
-
-stock.sync();
-
-export { stock }
+    {
+      sequelize: database,
+      tableName: 'products_stocks',
+      timestamps: true,
+    }
+  );
+  
+  export { Stock };
+  

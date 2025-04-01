@@ -1,34 +1,38 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stock = void 0;
+exports.Stock = void 0;
+// models/Stock.ts
+const sequelize_1 = require("sequelize");
 const sequelize_loader_1 = require("./sequelize-loader");
-const stock = sequelize_loader_1.database.define('products_stocks', {
+class Stock extends sequelize_1.Model {
+}
+exports.Stock = Stock;
+Stock.init({
     id: {
-        type: sequelize_loader_1.Sequelize.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        allowNull: false
     },
     name: {
-        type: sequelize_loader_1.Sequelize.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
     },
     stock: {
-        type: sequelize_loader_1.Sequelize.INTEGER,
-        allowNull: false
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
     },
     code: {
-        type: sequelize_loader_1.Sequelize.STRING,
-        allowNull: true
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
     },
     createdAt: {
-        type: sequelize_loader_1.Sequelize.DATE,
-        allowNull: false
+        type: sequelize_1.DataTypes.DATE,
     },
     updatedAt: {
-        type: sequelize_loader_1.Sequelize.DATE,
-        allowNull: false
-    }
+        type: sequelize_1.DataTypes.DATE,
+    },
+}, {
+    sequelize: sequelize_loader_1.database,
+    tableName: 'products_stocks',
+    timestamps: true,
 });
-exports.stock = stock;
-stock.sync();

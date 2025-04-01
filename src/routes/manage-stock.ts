@@ -1,6 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import { getBaseInfo, BaseInfo } from "../get-basefood-info";
-import { stock as Stock } from "../models/stock";
+import { Stock } from "../models/stock";
 import { sqlZ } from "../models/sequelize-loader";
 const Pushover = require("pushover-notifications");
 
@@ -64,7 +63,7 @@ router.post('/update-stock', async (req: Request, res: Response, next: NextFunct
     try {
 
         // anyとなっている部分は妥協点。直す。
-        const product: any = await Stock.findOne({ where: { code: req.body.verifyCode } });
+        const product = await Stock.findOne({ where: { code: req.body.verifyCode } });
 
         if (!product) {
             return res.status(404).send('商品が見つかりませんでした');
